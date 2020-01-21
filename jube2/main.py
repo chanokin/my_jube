@@ -1,5 +1,5 @@
 # JUBE Benchmarking Environment
-# Copyright (C) 2008-2017
+# Copyright (C) 2008-2019
 # Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre
 # http://www.fz-juelich.de/jsc/jube
 #
@@ -75,6 +75,7 @@ def benchmarks_results(args):
     """Show benchmark results"""
     found_benchmarks = search_for_benchmarks(args)
     result_list = list()
+
     # Start with the newest benchmark to set the newest result configuration
     found_benchmarks.reverse()
     cnt = 0
@@ -84,7 +85,6 @@ def benchmarks_results(args):
                                             args=args,
                                             result_list=result_list)
             cnt += 1
-
     for result_data in result_list:
         result_data.create_result(reverse=args.reverse)
 
@@ -142,6 +142,10 @@ def info(args):
                     steps = args.step
                 else:
                     steps = benchmark.steps.keys()
+                # Set default csv_parametrization value to allow empty -c
+                # option
+                if args.csv_parametrization is None:
+                    args.csv_parametrization = ","
                 for step_name in steps:
                     jube2.info.print_step_info(
                         benchmark, step_name,
@@ -217,6 +221,11 @@ def _load_existing_benchmark(args, benchmark_folder, restore_workpackages=True,
 
     jube2.log.change_logfile_name(os.path.join(
         benchmark_folder, jube2.conf.LOGFILE_PARSE_NAME))
+
+    # Add log information
+    LOGGER.debug("Command: {0} {1}".format(
+        os.path.basename(sys.argv[0]), " ".join(sys.argv[1:])))
+    LOGGER.debug("Version: {0}".format(jube2.conf.JUBE_VERSION))
 
     # Read existing benchmark configuration
     try:
@@ -310,9 +319,8 @@ def search_for_benchmarks(args):
             # Add all available benchmark folder
             found_benchmarks = all_benchmarks
         else:
-            # Get highest benchmark id
+            # Get highest benchmark id and build benchmark_folder
             benchmark_id = jube2.util.util.get_current_id(args.dir)
-            # Restart existing benchmark
             benchmark_folder = jube2.util.util.id_dir(args.dir, benchmark_id)
             if os.path.isdir(benchmark_folder):
                 found_benchmarks.append(benchmark_folder)
@@ -347,6 +355,12 @@ def run_new_benchmark(args):
         jube2.log.change_logfile_name(
             filename=os.path.join(os.path.dirname(path),
                                   jube2.conf.DEFAULT_LOGFILE_NAME))
+
+        # Add log information
+        LOGGER.debug("Command: {0} {1}".format(
+            os.path.basename(sys.argv[0]), " ".join(sys.argv[1:])))
+        LOGGER.debug("Version: {0}".format(jube2.conf.JUBE_VERSION))
+
         # Read new benchmarks
         if args.include_path is not None:
             include_pathes = [include_path for include_path in
@@ -385,6 +399,10 @@ def run_new_benchmark(args):
                     continue
                 bench.id = args.id[id_cnt]
                 id_cnt += 1
+            # Change runtime outpath if specified
+            if args.outpath is not None:
+                bench.outpath = args.outpath
+            # Start benchmark run
             bench.new_run()
             # Run analyse
             if args.analyse or args.result:
@@ -502,7 +520,8 @@ def _benchmark_result(benchmark_folder, args, result_list=None):
 
     # Create benchmark results
     result_list = benchmark.create_result(only=args.only,
-                                          data_list=result_list)
+                                          data_list=result_list,
+                                          style=args.style)
 
     # Reset logging
     jube2.log.only_console_log()
@@ -515,11 +534,9 @@ def _update_analyse_and_result(args, benchmark):
     given update file"""
     if args.update is not None:
         dirname = os.path.dirname(args.update)
-
         # Extract tags
-        tags = args.tag
-        if tags is not None:
-            tags = set(tags)
+        benchmark.add_tags(args.tag)
+        tags = benchmark.tags
 
         # Read new benchmarks
         if args.include_path is not None:
@@ -540,6 +557,9 @@ def _update_analyse_and_result(args, benchmark):
                                                     bench.results_order,
                                                     dirname)
                 break
+        else:
+            LOGGER.debug(("No benchmark data for benchmark {0} was found " +
+                          "while running update.").format(benchmark.name))
 
 
 def _remove_benchmark(benchmark_folder, args):
@@ -640,7 +660,9 @@ def gen_subparser_conf():
             ("-r", "--result"):
                 {"action": "store_true", "help": "show results"},
             ("-m", "--comment"):
-                {"help": "add comment"}
+                {"help": "add comment"},
+            ("-o", "--outpath"):
+                {"help": "overwrite outpath directory"}
         }
     }
 
@@ -715,7 +737,10 @@ def gen_subparser_conf():
                 {"help": "reverse benchmark output order",
                  "action": "store_true"},
             ("-n", "--num"):
-                {"type": int, "help": "show only last N benchmarks"}
+                {"type": int, "help": "show only last N benchmarks"},
+            ("-s", "--style"):
+                {"help": "overwrites table style type",
+                 "choices": ["pretty", "csv"]}
         }
     }
 
@@ -737,7 +762,8 @@ def gen_subparser_conf():
                  "action": "store_true"},
             ("-c", "--csv-parametrization"):
                 {"help": "display only parametrization of given step " +
-                 "using csv format", "action": "store_true"}
+                 "using csv format", "nargs": "?", "default": False,
+                 "metavar": "SEPARATOR"}
         }
     }
 
@@ -881,6 +907,7 @@ def _get_args_parser():
 
 def main(command=None):
     """Parse the command line and run the requested command."""
+
     jube2.help.load_help()
     parser = _get_args_parser()[0]
     if command is None:

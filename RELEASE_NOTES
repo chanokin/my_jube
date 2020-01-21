@@ -1,6 +1,83 @@
-
 Release notes
 *************
+
+
+Version 2.3.0
+=============
+
+Release: 2019-11-07
+
+* New command line option "-s {pretty,csv}, --style {pretty,csv}"
+  for the "result" command allows to overwrite the selected table
+  style
+
+* New command line option "-o OUTPATH, --outpath OUTPATH" for the
+  "run" command allows to overwrite the selected outpath for the
+  benchmark run
+
+* New parameter modes: "env" and "tag"
+
+     * "mode="env": include the content of an available environment
+       variable
+
+     * "mode="tag": include the tag name if the tag was set during
+       execution, otherwise the content is empty
+
+* New option "dotall=true" in "<pattern>" (default: "false") allows
+  that "." within a regular expression also matches newline
+  characters. This can be very helpfull to extract a line only after a
+  specific header was mentioned. See Extract data from a specifc text
+  block
+
+* "--tags" used in combination with the "--update" option will now
+  be added to the existing tags of the original run instead of
+  overwriting the old tags. If no new tags need to be added within an
+  update "--tags" can now be skipped.
+
+* "parse.log" is now automatically moved into the specifc job run
+  folder and is also available within the "jube log" command
+
+
+Version 2.2.2
+=============
+
+Release: 2019-02-04
+
+* New "tag" handling: Tags can now be mixed by using boolean
+  operations ("+" for and, "|" for or), brackets are allowed as well.
+  Old "," separated lists of tags are automatically converted. See
+  Tagging
+
+* Extend parameter update documentation. See Parameter update
+
+* Platform files were renamed (system specific to queuing system
+  specific)
+
+* Fix "$jube_wp_relpath" and "$jube_wp_abspath" if *JUBE* is
+  executed from a relative directory
+
+* Fixed missing or wrong environment variable evaluation within
+  *JUBE* parameters
+
+* Fix for derived pattern handling if no match for regular pattern
+  was found
+
+* Fix default value handling for derived pattern
+
+* Fix unicode decoding problems for environment variables
+
+
+Version 2.2.1
+=============
+
+Release: 2018-06-22
+
+* Allow separator selection when using the "jube info ... -c" option
+
+* Fix internal handling if a script parameter or a template is
+  evaluated to an empty value
+
+* Fix for different Python3 parsing conflicts
 
 
 Version 2.2.0
@@ -27,7 +104,7 @@ Release: 2017-12-21
 
 * Fix combination of "active" and "shared"
 
-* Fix sorting problem for multiple resutl columns
+* Fix sorting problem for multiple result columns
 
 * Fix parameter problem, if the continue command is used and the
   parameter holds a value having multiple lines
@@ -54,8 +131,8 @@ Release: 2016-12-20
 * "active" attribute can now be used in "<prepare>", "<copy>" and
   "<link>"
 
-* New FAQ entry concerning multiple file analysis: *Frequently Asked
-  Questions*
+* New FAQ entry concerning multiple file analysis: Frequently Asked
+  Questions
 
 * "<parameter>" using "mode="shell"" or "mode="perl"" will now stop
   program execution if an error occurs (similar to "mode="python"")
@@ -137,8 +214,8 @@ Release: 2016-07-29
 * "null_value=..." was removed from the "<column>" and "<key>"-tag
   because the new default attribute matches its behaviour
 
-* Added first *JUBE* FAQ entries to the documentation: *Frequently
-  Asked Questions*
+* Added first *JUBE* FAQ entries to the documentation: Frequently
+  Asked Questions
 
 * New "active"-attribute inside a "<step>"-tag. The attribute
   enables or disables the corresponding step (and all following
@@ -204,7 +281,7 @@ Release: 2015-11-10
 * Fix broken command line "--include-path" option
 
 * Allow recursive "<include-path>" and "<selection>" handling
-  (additional include-pathes can now be included by using the
+  (additional include-paths can now be included by using the
   "<include>" tag)
 
 * Allow multiple "<selection>" and "<include-path>" areas

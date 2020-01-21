@@ -1,5 +1,5 @@
 # JUBE Benchmarking Environment
-# Copyright (C) 2008-2017
+# Copyright (C) 2008-2019
 # Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre
 # http://www.fz-juelich.de/jsc/jube
 #
@@ -122,13 +122,19 @@ def substitution(text, substitution_dict):
     """Substitute templates given by parameter_dict inside of text"""
     changed = True
     count = 0
-    # All values must be string values
-    str_substitution_dict = dict([(k, str(v)) for k, v in
-                                  substitution_dict.items()])
+    # All values must be string values (handle Python 2 separatly)
+    try:
+        str_substitution_dict = \
+            dict([(k, str(v).decode("utf-8", errors="ignore")) for k, v in
+                  substitution_dict.items()])
+    except AttributeError:
+        str_substitution_dict = dict([(k, str(v)) for k, v in
+                                      substitution_dict.items()])
     # Preserve non evaluated parameter before starting substitution
     local_substitution_dict = dict([(k, re.sub(r"\$", "$$", v)
                                      if "$" in v else v) for k, v in
                                     str_substitution_dict.items()])
+
     # Run multiple times to allow recursive parameter substitution
     while changed and count < jube2.conf.MAX_RECURSIVE_SUB:
         count += 1
@@ -177,6 +183,7 @@ def script_evaluation(cmd, script_type):
         sub = subprocess.Popen(cmd, stdout=subprocess.PIPE,
                                stderr=subprocess.PIPE, shell=True)
         stdout, stderr = sub.communicate()
+        stdout = stdout.decode(errors="ignore")
         # Check command execution error code
         errorcode = sub.wait()
         if errorcode != 0:

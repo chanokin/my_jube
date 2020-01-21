@@ -1,5 +1,5 @@
 # JUBE Benchmarking Environment
-# Copyright (C) 2008-2017
+# Copyright (C) 2008-2019
 # Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre
 # http://www.fz-juelich.de/jsc/jube
 #
@@ -276,6 +276,13 @@ class Step(object):
         # update parameters
         global_parameterset.update_parameterset(update_parameters)
 
+        # Set tag-mode evaluation helper function to allow access to tag list
+        # during paramter evaluation
+        for parameter in global_parameterset.all_parameters:
+            if parameter.mode == "tag":
+                parameter.eval_helper = \
+                    lambda tag: tag if tag in benchmark.tags else ""
+
         # Expand templates
         parametersets = [global_parameterset]
         change = True
@@ -548,15 +555,15 @@ class Operation(object):
                         if (not read_out):
                             break
                         else:
+                            print(read_out.decode(errors="ignore"), end="")
                             try:
-                                print(read_out.decode(), end="")
-                            except UnicodeDecodeError:
-                                pass
-                            stdout.write(read_out)
+                                stdout.write(read_out)
+                            except TypeError:
+                                stdout.write(read_out.decode(errors="ignore"))
                             time.sleep(jube2.conf.VERBOSE_STDOUT_POLL_SLEEP)
                     sub.communicate()
 
-                returncode = 0#sub.wait()
+                returncode = sub.wait()
 
                 # Close filehandles
                 stdout.close()

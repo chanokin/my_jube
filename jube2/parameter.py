@@ -1,5 +1,5 @@
 # JUBE Benchmarking Environment
-# Copyright (C) 2008-2017
+# Copyright (C) 2008-2019
 # Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre
 # http://www.fz-juelich.de/jsc/jube
 #
@@ -22,6 +22,7 @@ from __future__ import (print_function,
                         division)
 
 import itertools
+import os
 import xml.etree.ElementTree as ET
 import copy
 import jube2.util.util
@@ -122,7 +123,8 @@ class Parameterset(object):
                      for parameter in self._parameters.values()
                      if (not parameter.is_template) and
                         (parameter.mode not in
-                         jube2.conf.ALLOWED_SCRIPTTYPES)])
+                         jube2.conf.ALLOWED_SCRIPTTYPES.union(
+                             jube2.conf.ALLOWED_ADVANCED_MODETYPES))])
 
     @property
     def template_parameter_dict(self):
@@ -359,7 +361,8 @@ class Parameter(object):
     def create_parameter(name, value, separator=None, parameter_type="string",
                          selected_value=None, parameter_mode="text",
                          export=False, no_templates=False,
-                         update_mode=NEVER_MODE, idx=-1, eval_helper=None):
+                         update_mode=NEVER_MODE, idx=-1, eval_helper=None,
+                         fixed=False):
         """Parameter constructor.
         Return a Static- or TemplateParameter based on the given data."""
         if separator is None:
@@ -371,17 +374,23 @@ class Parameter(object):
         value = "" + value
 
         # Check weather a new template should be created or not
-        if no_templates:
+        if no_templates or update_mode == JUBE_MODE:
             values = [value]
         else:
             values = [val.strip() for val in
                       jube2.util.util.safe_split(value, sep)]
 
         if len(values) == 1 or \
-           (parameter_mode in jube2.conf.ALLOWED_SCRIPTTYPES):
-            result = StaticParameter(name, value, separator, parameter_type,
-                                     parameter_mode, export, update_mode, idx,
-                                     eval_helper)
+           (parameter_mode in jube2.conf.ALLOWED_SCRIPTTYPES.union(
+               jube2.conf.ALLOWED_ADVANCED_MODETYPES)):
+            if fixed:
+                result = FixedParameter(name, value, separator, parameter_type,
+                                        parameter_mode, export, update_mode,
+                                        idx, eval_helper)
+            else:
+                result = StaticParameter(name, value, separator,
+                                         parameter_type, parameter_mode,
+                                         export, update_mode, idx, eval_helper)
         else:
             result = TemplateParameter(name, values, separator, parameter_type,
                                        parameter_mode, export, update_mode,
@@ -390,16 +399,25 @@ class Parameter(object):
         if selected_value is not None:
             tmp = result
             parameter_mode = "text"
-            result = StaticParameter(name, selected_value, separator,
-                                     parameter_type, parameter_mode, export,
-                                     update_mode, idx,
-                                     eval_helper)
+            result = FixedParameter(name, selected_value, separator,
+                                    parameter_type, parameter_mode, export,
+                                    update_mode, idx, eval_helper)
             result.based_on = tmp
         return result
 
     def copy(self):
         """Returns Parameter copy (flat copy)"""
         return copy.copy(self)
+
+    @property
+    def eval_helper(self):
+        """Return evaluation helper function"""
+        return self._eval_helper
+
+    @eval_helper.setter
+    def eval_helper(self, new_eval_helper):
+        """Sets a new evaluation helper function"""
+        self._eval_helper = new_eval_helper
 
     @property
     def name(self):
@@ -496,6 +514,11 @@ class Parameter(object):
         return isinstance(self, TemplateParameter)
 
     @property
+    def is_fixed(self):
+        """Return whether the parameter is fixed"""
+        return isinstance(self, FixedParameter)
+
+    @property
     def parameter_type(self):
         """Return parametertype"""
         return self._type
@@ -567,7 +590,7 @@ class StaticParameter(Parameter):
         Parameter.__init__(self, name, value, separator, parameter_type,
                            parameter_mode, export, update_mode, idx,
                            eval_helper)
-        self.__depending_parameter = \
+        self._depending_parameter = \
             set([other_par[1] for other_par in
                  re.findall(Parameter.parameter_regex, self._value)])
 
@@ -577,12 +600,13 @@ class StaticParameter(Parameter):
         return all([(param_name not in parameterset) or
                     ((not parameterset[param_name].is_template) and
                      (not parameterset[param_name].mode in
-                      jube2.conf.ALLOWED_SCRIPTTYPES))
-                    for param_name in self.__depending_parameter])
+                      jube2.conf.ALLOWED_SCRIPTTYPES.union(
+                          jube2.conf.ALLOWED_ADVANCED_MODETYPES)))
+                    for param_name in self._depending_parameter])
 
     def depends_on(self, parameter):
         """Checks the parameter depends on an other parameter."""
-        return (parameter.name in self.__depending_parameter)
+        return (parameter.name in self._depending_parameter)
 
     def substitute_and_evaluate(self, parametersets=None,
                                 final_sub=False, no_templates=False,
@@ -607,9 +631,13 @@ class StaticParameter(Parameter):
         parameter_dict = dict()
         if parametersets is not None:
             for parameterset in parametersets:
-                parameter_dict.update(
-                    dict([(name, param.value) for name, param in
-                          parameterset.constant_parameter_dict.items()]))
+                for name, param in parameterset.\
+                        constant_parameter_dict.items():
+                    # Avoid evaluation of fixed parameter content
+                    if param.is_fixed and "$" in param.value:
+                        parameter_dict[name] = re.sub(r"\$", "$$", param.value)
+                    else:
+                        parameter_dict[name] = param.value
         value = jube2.util.util.substitution(value, parameter_dict)
         # Run parameter evaluation, if value is fully expanded and
         # Parameter is a script
@@ -625,8 +653,9 @@ class StaticParameter(Parameter):
         if ((not re.search(Parameter.parameter_regex, value)) or
                 force_evaluation or final_sub) and \
                 (not any(parname.startswith("jube_wp_")
-                         for parname in self.__depending_parameter)) and \
-                (self._mode in jube2.conf.ALLOWED_SCRIPTTYPES):
+                         for parname in self._depending_parameter)) and \
+                ((self._mode in jube2.conf.ALLOWED_SCRIPTTYPES.union(
+                    jube2.conf.ALLOWED_ADVANCED_MODETYPES))):
             try:
                 # Run additional substitution to remove $$ before running
                 # script evaluation to allow usage of environment variables
@@ -634,7 +663,17 @@ class StaticParameter(Parameter):
                     value = jube2.util.util.substitution(value, parameter_dict)
                 # Run script evaluation
                 LOGGER.debug("Evaluate parameter: {0}".format(self._name))
-                value = jube2.util.util.script_evaluation(value, self._mode)
+                if self._mode in jube2.conf.ALLOWED_SCRIPTTYPES:
+                    value = jube2.util.util.script_evaluation(
+                        value, self._mode)
+                if self._mode == "env":
+                    try:
+                        value = os.environ[value]
+                    except KeyError:
+                        raise RuntimeError(("\"{0}\" isn't an available " +
+                                            "environment variable").format(
+                            value))
+
                 # Insert new $$ if needed
                 if not final_sub and "$" in value:
                     value = re.sub(r"\$", "$$", value)
@@ -670,10 +709,12 @@ class StaticParameter(Parameter):
                                                no_templates=no_templates,
                                                update_mode=self._update_mode,
                                                idx=self._idx,
-                                               eval_helper=self._eval_helper)
+                                               eval_helper=None,
+                                               fixed=final_sub)
             param.based_on = self
         else:
             param = self
+
         return param, changed
 
     @staticmethod
@@ -719,3 +760,24 @@ class TemplateParameter(Parameter):
                                            idx=index)
             static_param.based_on = self
             yield static_param
+
+
+class FixedParameter(StaticParameter):
+
+    """A FixedParameter is a parameter which can not be evaluated anymore.
+    It represents a fixed value.
+    """
+
+    def __init__(self, name, value, separator=None, parameter_type="string",
+                 parameter_mode="text", export=False,
+                 update_mode=NEVER_MODE, idx=-1, eval_helper=None):
+        StaticParameter.__init__(self, name, value, separator, parameter_type,
+                                 parameter_mode, export, update_mode, idx,
+                                 eval_helper)
+        self._depending_parameter = set()
+
+    def substitute_and_evaluate(self, parametersets=None,
+                                final_sub=False, no_templates=False,
+                                force_evaluation=False):
+        """No substitute"""
+        return self, False
