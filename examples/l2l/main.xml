@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jube>
+  <benchmark name="L2L" outpath="bench_run">
+    <comment>Test file for a set of parameters taken from file</comment>
+    
+    <!-- Operation -->
+    <step name="say_hello">
+      <use from="include_data.xml">param_set</use> <!-- out of an external file -->
+      <do>echo $param1 $param2</do> <!-- shell command -->
+    </step>    
+  </benchmark>
+</jube>

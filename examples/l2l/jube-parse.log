@@ -1,0 +1,73 @@
+[2018-01-23 16:43:58,356]:DEBUG: Parsing main.xml
+[2018-01-23 16:43:58,357]:DEBUG:   --> Preprocess run 1 <--
+[2018-01-23 16:43:58,357]:DEBUG:   Remove invalid tags
+[2018-01-23 16:43:58,357]:DEBUG:     Available tags: 
+[2018-01-23 16:43:58,357]:DEBUG:   Remove invalid tags
+[2018-01-23 16:43:58,357]:DEBUG:     Available tags: 
+[2018-01-23 16:43:58,358]:DEBUG:   Read $JUBE_INCLUDE_PATH
+[2018-01-23 16:43:58,358]:DEBUG:   Preprocess xml tree
+[2018-01-23 16:43:58,358]:DEBUG:     path: .
+[2018-01-23 16:43:58,358]:DEBUG:   Remove invalid tags
+[2018-01-23 16:43:58,358]:DEBUG:     Available tags: 
+[2018-01-23 16:43:58,358]:DEBUG:   Preprocess done
+[2018-01-23 16:43:58,358]:DEBUG:   Preprocess benchmark xml tree
+[2018-01-23 16:43:58,358]:DEBUG:     Searching for type of "param_set" in include_data.xml
+[2018-01-23 16:43:58,358]:DEBUG:   Parsing <parameterset name="jube_f6212f36c4651b885c5b19c8a4c06a33_param_set">
+[2018-01-23 16:43:58,358]:DEBUG:     Searching for <parameterset name="param_set"> in include_data.xml
+[2018-01-23 16:43:58,359]:DEBUG:   Parsing <step name="say_hello">
+[2018-01-23 16:43:58,359]:DEBUG: Start consistency check
+[2018-01-23 16:43:58,359]:DEBUG: Create benchmark directory
+[2018-01-23 16:46:27,969]:DEBUG: Parsing main.xml
+[2018-01-23 16:46:27,970]:DEBUG:   --> Preprocess run 1 <--
+[2018-01-23 16:46:27,970]:DEBUG:   Remove invalid tags
+[2018-01-23 16:46:27,970]:DEBUG:     Available tags: 
+[2018-01-23 16:46:27,970]:DEBUG:   Remove invalid tags
+[2018-01-23 16:46:27,970]:DEBUG:     Available tags: 
+[2018-01-23 16:46:27,970]:DEBUG:   Read $JUBE_INCLUDE_PATH
+[2018-01-23 16:46:27,971]:DEBUG:   Preprocess xml tree
+[2018-01-23 16:46:27,971]:DEBUG:     path: .
+[2018-01-23 16:46:27,971]:DEBUG:   Remove invalid tags
+[2018-01-23 16:46:27,971]:DEBUG:     Available tags: 
+[2018-01-23 16:46:27,971]:DEBUG:   Preprocess done
+[2018-01-23 16:46:27,971]:DEBUG:   Preprocess benchmark xml tree
+[2018-01-23 16:46:27,971]:DEBUG:     Searching for type of "param_set" in include_data.xml
+[2018-01-23 16:46:27,971]:ERROR: 
+[2018-01-23 16:46:27,971]:ERROR: mismatched tag: line 7, column 4
+[2018-01-23 16:46:52,144]:DEBUG: Parsing main.xml
+[2018-01-23 16:46:52,145]:DEBUG:   --> Preprocess run 1 <--
+[2018-01-23 16:46:52,145]:DEBUG:   Remove invalid tags
+[2018-01-23 16:46:52,145]:DEBUG:     Available tags: 
+[2018-01-23 16:46:52,145]:DEBUG:   Remove invalid tags
+[2018-01-23 16:46:52,146]:DEBUG:     Available tags: 
+[2018-01-23 16:46:52,146]:DEBUG:   Read $JUBE_INCLUDE_PATH
+[2018-01-23 16:46:52,146]:DEBUG:   Preprocess xml tree
+[2018-01-23 16:46:52,146]:DEBUG:     path: .
+[2018-01-23 16:46:52,146]:DEBUG:   Remove invalid tags
+[2018-01-23 16:46:52,146]:DEBUG:     Available tags: 
+[2018-01-23 16:46:52,146]:DEBUG:   Preprocess done
+[2018-01-23 16:46:52,146]:DEBUG:   Preprocess benchmark xml tree
+[2018-01-23 16:46:52,146]:DEBUG:     Searching for type of "param_set" in include_data.xml
+[2018-01-23 16:46:52,147]:DEBUG:   Parsing <parameterset name="jube_f6212f36c4651b885c5b19c8a4c06a33_param_set">
+[2018-01-23 16:46:52,147]:DEBUG:     Searching for <parameterset name="param_set"> in include_data.xml
+[2018-01-23 16:46:52,148]:DEBUG:   Parsing <step name="say_hello">
+[2018-01-23 16:46:52,148]:DEBUG: Start consistency check
+[2018-01-23 16:46:52,148]:DEBUG: Create benchmark directory
+[2018-01-23 16:47:09,326]:DEBUG: Parsing main.xml
+[2018-01-23 16:47:09,327]:DEBUG:   --> Preprocess run 1 <--
+[2018-01-23 16:47:09,327]:DEBUG:   Remove invalid tags
+[2018-01-23 16:47:09,328]:DEBUG:     Available tags: 
+[2018-01-23 16:47:09,328]:DEBUG:   Remove invalid tags
+[2018-01-23 16:47:09,328]:DEBUG:     Available tags: 
+[2018-01-23 16:47:09,328]:DEBUG:   Read $JUBE_INCLUDE_PATH
+[2018-01-23 16:47:09,328]:DEBUG:   Preprocess xml tree
+[2018-01-23 16:47:09,328]:DEBUG:     path: .
+[2018-01-23 16:47:09,328]:DEBUG:   Remove invalid tags
+[2018-01-23 16:47:09,328]:DEBUG:     Available tags: 
+[2018-01-23 16:47:09,328]:DEBUG:   Preprocess done
+[2018-01-23 16:47:09,328]:DEBUG:   Preprocess benchmark xml tree
+[2018-01-23 16:47:09,328]:DEBUG:     Searching for type of "param_set" in include_data.xml
+[2018-01-23 16:47:09,329]:DEBUG:   Parsing <parameterset name="jube_f6212f36c4651b885c5b19c8a4c06a33_param_set">
+[2018-01-23 16:47:09,329]:DEBUG:     Searching for <parameterset name="param_set"> in include_data.xml
+[2018-01-23 16:47:09,329]:DEBUG:   Parsing <step name="say_hello">
+[2018-01-23 16:47:09,329]:DEBUG: Start consistency check
+[2018-01-23 16:47:09,329]:DEBUG: Create benchmark directory

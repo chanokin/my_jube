@@ -1,0 +1,52 @@
+[2018-01-23 15:53:23,867]:DEBUG: Create initial workpackages
+[2018-01-23 15:53:23,873]:DEBUG: Store initial workpackage information
+[2018-01-23 15:53:23,873]:DEBUG: Start benchmark run
+[2018-01-23 15:53:23,873]:INFO: ######################################################################
+[2018-01-23 15:53:23,873]:INFO: # benchmark: hello_world
+[2018-01-23 15:53:23,873]:INFO: #
+[2018-01-23 15:53:23,873]:INFO: # A simple hello world
+[2018-01-23 15:53:23,874]:INFO: ######################################################################
+[2018-01-23 15:53:23,874]:DEBUG: ----- say_hello ( iter:0 | id:0 | parents: | cycle:0 ) -----
+[2018-01-23 15:53:23,875]:DEBUG:   available parameter:
+[2018-01-23 15:53:23,875]:DEBUG:          parameter             | value                                   
+[2018-01-23 15:53:23,875]:DEBUG:          ----------------------+-----------------------------------------
+[2018-01-23 15:53:23,875]:DEBUG:          hello_str             | Hello World                             
+[2018-01-23 15:53:23,875]:DEBUG:          jube_benchmark_home   | /home/sandra/Documents/Tools/JUBE-2.2.0/
+[2018-01-23 15:53:23,875]:DEBUG:                                | examples/hello_world                    
+[2018-01-23 15:53:23,875]:DEBUG:          jube_benchmark_id     | 0                                       
+[2018-01-23 15:53:23,875]:DEBUG:          jube_benchmark_name   | hello_world                             
+[2018-01-23 15:53:23,875]:DEBUG:          jube_benchmark_padid  | 000000                                  
+[2018-01-23 15:53:23,875]:DEBUG:          jube_benchmark_rundir | /home/sandra/Documents/Tools/JUBE-2.2.0/
+[2018-01-23 15:53:23,875]:DEBUG:                                | examples/hello_world/bench_run/000000   
+[2018-01-23 15:53:23,875]:DEBUG:          jube_benchmark_start  | 2018-01-23T15:53:23                     
+[2018-01-23 15:53:23,875]:DEBUG:          jube_step_cycles      | 1                                       
+[2018-01-23 15:53:23,875]:DEBUG:          jube_step_iterations  | 1                                       
+[2018-01-23 15:53:23,875]:DEBUG:          jube_step_name        | say_hello                               
+[2018-01-23 15:53:23,875]:DEBUG:          jube_wp_abspath       | /home/sandra/Documents/Tools/JUBE-2.2.0/
+[2018-01-23 15:53:23,875]:DEBUG:                                | examples/hello_world/bench_run/000000/00
+[2018-01-23 15:53:23,875]:DEBUG:                                | 0000_say_hello/work                     
+[2018-01-23 15:53:23,875]:DEBUG:          jube_wp_cycle         | 0                                       
+[2018-01-23 15:53:23,875]:DEBUG:          jube_wp_envlist       |                                         
+[2018-01-23 15:53:23,875]:DEBUG:          jube_wp_envstr        |                                         
+[2018-01-23 15:53:23,875]:DEBUG:          jube_wp_id            | 0                                       
+[2018-01-23 15:53:23,875]:DEBUG:          jube_wp_iteration     | 0                                       
+[2018-01-23 15:53:23,875]:DEBUG:          jube_wp_padid         | 000000                                  
+[2018-01-23 15:53:23,875]:DEBUG:          jube_wp_relpath       | bench_run/000000/000000_say_hello/work  
+[2018-01-23 15:53:23,876]:DEBUG: >>> echo Hello World
+[2018-01-23 15:53:23,876]:DEBUG:     stdout: /home/sandra/Documents/Tools/JUBE-2.2.0/examples/hello_world/bench_run/000000/000000_say_hello/work/stdout
+[2018-01-23 15:53:23,876]:DEBUG:     stderr: /home/sandra/Documents/Tools/JUBE-2.2.0/examples/hello_world/bench_run/000000/000000_say_hello/work/stderr
+[2018-01-23 15:53:23,882]:DEBUG: Create new workpackages for workpackage say_hello(0)
+[2018-01-23 15:53:23,882]:DEBUG:   0 new workpackages created
+[2018-01-23 15:53:23,883]:INFO:    stepname | all | open | wait | error | done
+[2018-01-23 15:53:23,883]:INFO:   ----------+-----+------+------+-------+-----
+[2018-01-23 15:53:23,883]:INFO:   say_hello |   1 |    0 |    0 |     0 |    1
+[2018-01-23 15:53:23,883]:INFO: 
+[2018-01-23 15:53:23,883]:INFO: >>>> Benchmark information and further useful commands:
+[2018-01-23 15:53:23,883]:INFO: >>>>       id: 0
+[2018-01-23 15:53:23,883]:INFO: >>>>   handle: bench_run
+[2018-01-23 15:53:23,883]:INFO: >>>>      dir: bench_run/000000
+[2018-01-23 15:53:23,884]:INFO: >>>>  analyse: jube analyse bench_run --id 0
+[2018-01-23 15:53:23,884]:INFO: >>>>   result: jube result bench_run --id 0
+[2018-01-23 15:53:23,884]:INFO: >>>>     info: jube info bench_run --id 0
+[2018-01-23 15:53:23,884]:INFO: >>>>      log: jube log bench_run --id 0
+[2018-01-23 15:53:23,884]:INFO: ######################################################################

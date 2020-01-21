@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jube version="2.2.0">
+  <benchmark file_path_ref="../.." name="L2L" outpath="..">
+    <comment>Test file for a set of parameters taken from file</comment>
+    <parameterset name="jube_f6212f36c4651b885c5b19c8a4c06a33_param_set">
+      <parameter mode="text" name="index" separator="," type="int">0,1,2</parameter>
+      <parameter mode="python" name="param2" separator="," type="float">[0.1,0.2,0.5][$index]</parameter>
+      <parameter mode="python" name="param1" separator="," type="int">[1,2,4][$index]</parameter>
+    </parameterset>
+    <step name="say_hello">
+      <use>jube_f6212f36c4651b885c5b19c8a4c06a33_param_set</use>
+      <do>echo $param1 $param2</do>
+    </step>
+  </benchmark>
+</jube>

@@ -1,0 +1,128 @@
+[2018-01-23 16:47:09,331]:DEBUG: Create initial workpackages
+[2018-01-23 16:47:09,331]:DEBUG: Expand parameter templates:
+[2018-01-23 16:47:09,332]:DEBUG:     "index": 0,1,2
+[2018-01-23 16:47:09,333]:DEBUG: Evaluate parameter: param2
+[2018-01-23 16:47:09,333]:DEBUG: Evaluate parameter: param1
+[2018-01-23 16:47:09,336]:DEBUG: Evaluate parameter: param2
+[2018-01-23 16:47:09,336]:DEBUG: Evaluate parameter: param1
+[2018-01-23 16:47:09,338]:DEBUG: Evaluate parameter: param2
+[2018-01-23 16:47:09,339]:DEBUG: Evaluate parameter: param1
+[2018-01-23 16:47:09,358]:DEBUG: Store initial workpackage information
+[2018-01-23 16:47:09,360]:DEBUG: Start benchmark run
+[2018-01-23 16:47:09,361]:INFO: ######################################################################
+[2018-01-23 16:47:09,361]:INFO: # benchmark: L2L
+[2018-01-23 16:47:09,361]:INFO: #
+[2018-01-23 16:47:09,361]:INFO: # Test file for a set of parameters taken from file
+[2018-01-23 16:47:09,361]:INFO: ######################################################################
+[2018-01-23 16:47:09,361]:DEBUG: ----- say_hello ( iter:0 | id:0 | parents: | cycle:0 ) -----
+[2018-01-23 16:47:09,362]:DEBUG:   available parameter:
+[2018-01-23 16:47:09,362]:DEBUG:          parameter             | value                                   
+[2018-01-23 16:47:09,362]:DEBUG:          ----------------------+-----------------------------------------
+[2018-01-23 16:47:09,362]:DEBUG:          index                 | 0                                       
+[2018-01-23 16:47:09,362]:DEBUG:          jube_benchmark_home   | /home/sandra/Documents/Tools/JUBE-2.2.0/
+[2018-01-23 16:47:09,362]:DEBUG:                                | examples/l2l                            
+[2018-01-23 16:47:09,362]:DEBUG:          jube_benchmark_id     | 1                                       
+[2018-01-23 16:47:09,362]:DEBUG:          jube_benchmark_name   | L2L                                     
+[2018-01-23 16:47:09,362]:DEBUG:          jube_benchmark_padid  | 000001                                  
+[2018-01-23 16:47:09,362]:DEBUG:          jube_benchmark_rundir | /home/sandra/Documents/Tools/JUBE-2.2.0/
+[2018-01-23 16:47:09,362]:DEBUG:                                | examples/l2l/bench_run/000001           
+[2018-01-23 16:47:09,362]:DEBUG:          jube_benchmark_start  | 2018-01-23T16:47:09                     
+[2018-01-23 16:47:09,362]:DEBUG:          jube_step_cycles      | 1                                       
+[2018-01-23 16:47:09,362]:DEBUG:          jube_step_iterations  | 1                                       
+[2018-01-23 16:47:09,362]:DEBUG:          jube_step_name        | say_hello                               
+[2018-01-23 16:47:09,362]:DEBUG:          jube_wp_abspath       | /home/sandra/Documents/Tools/JUBE-2.2.0/
+[2018-01-23 16:47:09,362]:DEBUG:                                | examples/l2l/bench_run/000001/000000_say
+[2018-01-23 16:47:09,362]:DEBUG:                                | _hello/work                             
+[2018-01-23 16:47:09,362]:DEBUG:          jube_wp_cycle         | 0                                       
+[2018-01-23 16:47:09,362]:DEBUG:          jube_wp_envlist       |                                         
+[2018-01-23 16:47:09,362]:DEBUG:          jube_wp_envstr        |                                         
+[2018-01-23 16:47:09,362]:DEBUG:          jube_wp_id            | 0                                       
+[2018-01-23 16:47:09,363]:DEBUG:          jube_wp_iteration     | 0                                       
+[2018-01-23 16:47:09,363]:DEBUG:          jube_wp_padid         | 000000                                  
+[2018-01-23 16:47:09,363]:DEBUG:          jube_wp_relpath       | bench_run/000001/000000_say_hello/work  
+[2018-01-23 16:47:09,363]:DEBUG:          param1                | 1                                       
+[2018-01-23 16:47:09,363]:DEBUG:          param2                | 0.1                                     
+[2018-01-23 16:47:09,363]:DEBUG: >>> echo 1 0.1
+[2018-01-23 16:47:09,363]:DEBUG:     stdout: /home/sandra/Documents/Tools/JUBE-2.2.0/examples/l2l/bench_run/000001/000000_say_hello/work/stdout
+[2018-01-23 16:47:09,363]:DEBUG:     stderr: /home/sandra/Documents/Tools/JUBE-2.2.0/examples/l2l/bench_run/000001/000000_say_hello/work/stderr
+[2018-01-23 16:47:09,374]:DEBUG: Create new workpackages for workpackage say_hello(0)
+[2018-01-23 16:47:09,374]:DEBUG:   0 new workpackages created
+[2018-01-23 16:47:09,374]:DEBUG: ----- say_hello ( iter:0 | id:1 | parents: | cycle:0 ) -----
+[2018-01-23 16:47:09,377]:DEBUG:   available parameter:
+[2018-01-23 16:47:09,378]:DEBUG:          parameter             | value                                   
+[2018-01-23 16:47:09,378]:DEBUG:          ----------------------+-----------------------------------------
+[2018-01-23 16:47:09,378]:DEBUG:          index                 | 1                                       
+[2018-01-23 16:47:09,378]:DEBUG:          jube_benchmark_home   | /home/sandra/Documents/Tools/JUBE-2.2.0/
+[2018-01-23 16:47:09,378]:DEBUG:                                | examples/l2l                            
+[2018-01-23 16:47:09,378]:DEBUG:          jube_benchmark_id     | 1                                       
+[2018-01-23 16:47:09,378]:DEBUG:          jube_benchmark_name   | L2L                                     
+[2018-01-23 16:47:09,378]:DEBUG:          jube_benchmark_padid  | 000001                                  
+[2018-01-23 16:47:09,378]:DEBUG:          jube_benchmark_rundir | /home/sandra/Documents/Tools/JUBE-2.2.0/
+[2018-01-23 16:47:09,378]:DEBUG:                                | examples/l2l/bench_run/000001           
+[2018-01-23 16:47:09,378]:DEBUG:          jube_benchmark_start  | 2018-01-23T16:47:09                     
+[2018-01-23 16:47:09,378]:DEBUG:          jube_step_cycles      | 1                                       
+[2018-01-23 16:47:09,378]:DEBUG:          jube_step_iterations  | 1                                       
+[2018-01-23 16:47:09,378]:DEBUG:          jube_step_name        | say_hello                               
+[2018-01-23 16:47:09,378]:DEBUG:          jube_wp_abspath       | /home/sandra/Documents/Tools/JUBE-2.2.0/
+[2018-01-23 16:47:09,378]:DEBUG:                                | examples/l2l/bench_run/000001/000001_say
+[2018-01-23 16:47:09,378]:DEBUG:                                | _hello/work                             
+[2018-01-23 16:47:09,378]:DEBUG:          jube_wp_cycle         | 0                                       
+[2018-01-23 16:47:09,378]:DEBUG:          jube_wp_envlist       |                                         
+[2018-01-23 16:47:09,378]:DEBUG:          jube_wp_envstr        |                                         
+[2018-01-23 16:47:09,378]:DEBUG:          jube_wp_id            | 1                                       
+[2018-01-23 16:47:09,379]:DEBUG:          jube_wp_iteration     | 0                                       
+[2018-01-23 16:47:09,379]:DEBUG:          jube_wp_padid         | 000001                                  
+[2018-01-23 16:47:09,379]:DEBUG:          jube_wp_relpath       | bench_run/000001/000001_say_hello/work  
+[2018-01-23 16:47:09,379]:DEBUG:          param1                | 2                                       
+[2018-01-23 16:47:09,379]:DEBUG:          param2                | 0.2                                     
+[2018-01-23 16:47:09,379]:DEBUG: >>> echo 2 0.2
+[2018-01-23 16:47:09,379]:DEBUG:     stdout: /home/sandra/Documents/Tools/JUBE-2.2.0/examples/l2l/bench_run/000001/000001_say_hello/work/stdout
+[2018-01-23 16:47:09,379]:DEBUG:     stderr: /home/sandra/Documents/Tools/JUBE-2.2.0/examples/l2l/bench_run/000001/000001_say_hello/work/stderr
+[2018-01-23 16:47:09,382]:DEBUG: Create new workpackages for workpackage say_hello(1)
+[2018-01-23 16:47:09,382]:DEBUG:   0 new workpackages created
+[2018-01-23 16:47:09,383]:DEBUG: ----- say_hello ( iter:0 | id:2 | parents: | cycle:0 ) -----
+[2018-01-23 16:47:09,385]:DEBUG:   available parameter:
+[2018-01-23 16:47:09,385]:DEBUG:          parameter             | value                                   
+[2018-01-23 16:47:09,385]:DEBUG:          ----------------------+-----------------------------------------
+[2018-01-23 16:47:09,385]:DEBUG:          index                 | 2                                       
+[2018-01-23 16:47:09,385]:DEBUG:          jube_benchmark_home   | /home/sandra/Documents/Tools/JUBE-2.2.0/
+[2018-01-23 16:47:09,385]:DEBUG:                                | examples/l2l                            
+[2018-01-23 16:47:09,385]:DEBUG:          jube_benchmark_id     | 1                                       
+[2018-01-23 16:47:09,385]:DEBUG:          jube_benchmark_name   | L2L                                     
+[2018-01-23 16:47:09,385]:DEBUG:          jube_benchmark_padid  | 000001                                  
+[2018-01-23 16:47:09,385]:DEBUG:          jube_benchmark_rundir | /home/sandra/Documents/Tools/JUBE-2.2.0/
+[2018-01-23 16:47:09,386]:DEBUG:                                | examples/l2l/bench_run/000001           
+[2018-01-23 16:47:09,386]:DEBUG:          jube_benchmark_start  | 2018-01-23T16:47:09                     
+[2018-01-23 16:47:09,386]:DEBUG:          jube_step_cycles      | 1                                       
+[2018-01-23 16:47:09,386]:DEBUG:          jube_step_iterations  | 1                                       
+[2018-01-23 16:47:09,386]:DEBUG:          jube_step_name        | say_hello                               
+[2018-01-23 16:47:09,386]:DEBUG:          jube_wp_abspath       | /home/sandra/Documents/Tools/JUBE-2.2.0/
+[2018-01-23 16:47:09,386]:DEBUG:                                | examples/l2l/bench_run/000001/000002_say
+[2018-01-23 16:47:09,386]:DEBUG:                                | _hello/work                             
+[2018-01-23 16:47:09,386]:DEBUG:          jube_wp_cycle         | 0                                       
+[2018-01-23 16:47:09,386]:DEBUG:          jube_wp_envlist       |                                         
+[2018-01-23 16:47:09,386]:DEBUG:          jube_wp_envstr        |                                         
+[2018-01-23 16:47:09,386]:DEBUG:          jube_wp_id            | 2                                       
+[2018-01-23 16:47:09,386]:DEBUG:          jube_wp_iteration     | 0                                       
+[2018-01-23 16:47:09,386]:DEBUG:          jube_wp_padid         | 000002                                  
+[2018-01-23 16:47:09,386]:DEBUG:          jube_wp_relpath       | bench_run/000001/000002_say_hello/work  
+[2018-01-23 16:47:09,386]:DEBUG:          param1                | 4                                       
+[2018-01-23 16:47:09,386]:DEBUG:          param2                | 0.5                                     
+[2018-01-23 16:47:09,387]:DEBUG: >>> echo 4 0.5
+[2018-01-23 16:47:09,387]:DEBUG:     stdout: /home/sandra/Documents/Tools/JUBE-2.2.0/examples/l2l/bench_run/000001/000002_say_hello/work/stdout
+[2018-01-23 16:47:09,387]:DEBUG:     stderr: /home/sandra/Documents/Tools/JUBE-2.2.0/examples/l2l/bench_run/000001/000002_say_hello/work/stderr
+[2018-01-23 16:47:09,397]:DEBUG: Create new workpackages for workpackage say_hello(2)
+[2018-01-23 16:47:09,397]:DEBUG:   0 new workpackages created
+[2018-01-23 16:47:09,402]:INFO:    stepname | all | open | wait | error | done
+[2018-01-23 16:47:09,402]:INFO:   ----------+-----+------+------+-------+-----
+[2018-01-23 16:47:09,402]:INFO:   say_hello |   3 |    0 |    0 |     0 |    3
+[2018-01-23 16:47:09,402]:INFO: 
+[2018-01-23 16:47:09,402]:INFO: >>>> Benchmark information and further useful commands:
+[2018-01-23 16:47:09,402]:INFO: >>>>       id: 1
+[2018-01-23 16:47:09,403]:INFO: >>>>   handle: bench_run
+[2018-01-23 16:47:09,403]:INFO: >>>>      dir: bench_run/000001
+[2018-01-23 16:47:09,403]:INFO: >>>>  analyse: jube analyse bench_run --id 1
+[2018-01-23 16:47:09,403]:INFO: >>>>   result: jube result bench_run --id 1
+[2018-01-23 16:47:09,403]:INFO: >>>>     info: jube info bench_run --id 1
+[2018-01-23 16:47:09,403]:INFO: >>>>      log: jube log bench_run --id 1
+[2018-01-23 16:47:09,403]:INFO: ######################################################################

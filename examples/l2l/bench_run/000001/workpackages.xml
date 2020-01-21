@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workpackages>
+  <workpackage id="0">
+    <step cycle="0" iteration="0">say_hello</step>
+    <parameterset>
+      <parameter mode="text" name="index" separator="," type="int">
+        <value>0,1,2</value>
+        <selection idx="0">0</selection>
+      </parameter>
+      <parameter mode="python" name="param2" separator="," type="float">
+        <value>[0.1,0.2,0.5][$index]</value>
+        <selection>0.1</selection>
+      </parameter>
+      <parameter mode="python" name="param1" separator="," type="int">
+        <value>[1,2,4][$index]</value>
+        <selection>1</selection>
+      </parameter>
+    </parameterset>
+    <iteration_siblings>0</iteration_siblings>
+    <environment/>
+  </workpackage>
+  <workpackage id="1">
+    <step cycle="0" iteration="0">say_hello</step>
+    <parameterset>
+      <parameter mode="text" name="index" separator="," type="int">
+        <value>0,1,2</value>
+        <selection idx="1">1</selection>
+      </parameter>
+      <parameter mode="python" name="param2" separator="," type="float">
+        <value>[0.1,0.2,0.5][$index]</value>
+        <selection>0.2</selection>
+      </parameter>
+      <parameter mode="python" name="param1" separator="," type="int">
+        <value>[1,2,4][$index]</value>
+        <selection>2</selection>
+      </parameter>
+    </parameterset>
+    <iteration_siblings>1</iteration_siblings>
+    <environment/>
+  </workpackage>
+  <workpackage id="2">
+    <step cycle="0" iteration="0">say_hello</step>
+    <parameterset>
+      <parameter mode="text" name="index" separator="," type="int">
+        <value>0,1,2</value>
+        <selection idx="2">2</selection>
+      </parameter>
+      <parameter mode="python" name="param2" separator="," type="float">
+        <value>[0.1,0.2,0.5][$index]</value>
+        <selection>0.5</selection>
+      </parameter>
+      <parameter mode="python" name="param1" separator="," type="int">
+        <value>[1,2,4][$index]</value>
+        <selection>4</selection>
+      </parameter>
+    </parameterset>
+    <iteration_siblings>2</iteration_siblings>
+    <environment/>
+  </workpackage>
+</workpackages>

@@ -1,0 +1,17 @@
+[2018-01-23 15:53:23,863]:DEBUG: Parsing hello_world.xml
+[2018-01-23 15:53:23,865]:DEBUG:   --> Preprocess run 1 <--
+[2018-01-23 15:53:23,865]:DEBUG:   Remove invalid tags
+[2018-01-23 15:53:23,865]:DEBUG:     Available tags: 
+[2018-01-23 15:53:23,865]:DEBUG:   Remove invalid tags
+[2018-01-23 15:53:23,865]:DEBUG:     Available tags: 
+[2018-01-23 15:53:23,865]:DEBUG:   Read $JUBE_INCLUDE_PATH
+[2018-01-23 15:53:23,865]:DEBUG:   Preprocess xml tree
+[2018-01-23 15:53:23,865]:DEBUG:     path: .
+[2018-01-23 15:53:23,865]:DEBUG:   Remove invalid tags
+[2018-01-23 15:53:23,865]:DEBUG:     Available tags: 
+[2018-01-23 15:53:23,865]:DEBUG:   Preprocess done
+[2018-01-23 15:53:23,865]:DEBUG:   Preprocess benchmark xml tree
+[2018-01-23 15:53:23,866]:DEBUG:   Parsing <parameterset name="hello_parameter">
+[2018-01-23 15:53:23,866]:DEBUG:   Parsing <step name="say_hello">
+[2018-01-23 15:53:23,866]:DEBUG: Start consistency check
+[2018-01-23 15:53:23,866]:DEBUG: Create benchmark directory
